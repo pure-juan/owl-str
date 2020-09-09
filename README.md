@@ -37,4 +37,5 @@ const sql = str`
         AND [SOME_COLUMN] = :SOME_COLUMN
     `}
 `
+// isNotEmpty method will be ignore that string if some_variables is empty(null or undefined).
 ```

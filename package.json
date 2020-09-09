@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
+    "prepublish": "yarn build",
     "prebuild": "yarn test"
   },
   "devDependencies": {
