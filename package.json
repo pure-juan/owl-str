@@ -1,0 +1,34 @@
+{
+  "name": "owl-str",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "prebuild": "yarn test"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.13",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.3.0",
+    "typescript": "^4.0.2"
+  },
+  "jest": {
+    "verbose": true,
+    "rootDir": "lib",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "diagnostics": true
+      }
+    }
+  }
+}
