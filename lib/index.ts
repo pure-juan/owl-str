@@ -1,12 +1,13 @@
-export const str = <T>(payload: T) => (strings: TemplateStringsArray, ...args: (any | ((payload: T) => any))[]) => {
+export const str = <T>(payload: T) => (strings: TemplateStringsArray, ...args: (string | number | ((payload: T) => any))[]) => {
     let index = 0;
     return strings.reduce((accumulator, currentValue) => {
         let arg: any = '';
         if (args[index]) {
-            if (typeof args[index] === 'function') {
-                arg = args[index](payload);
+            const temp = args[index];
+            if (typeof temp === 'function') {
+                arg = temp(payload);
             } else {
-                arg = args[index];
+                arg = temp;
             }
             index++;
         }

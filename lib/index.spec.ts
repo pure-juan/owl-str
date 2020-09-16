@@ -2,15 +2,23 @@ import { str, emptyStr, isNotEmpty, isEmpty, isTrue, isFalse } from './';
 
 describe("owl-str test", () => {
     test('test str function', () => {
-        const exp = str`
+        const payload = {
+            first: true,
+            second: false
+        }
+        const exp = str(payload)`
             testing...
             ${true ? 'asd': ''}
             ${false ? 'asd': ''}
+            ${({first}) => first ? 'TRUE': 'FALSE'}
+            ${({second}) => second ? 'TRUE': 'FALSE'}
         `;
 
         expect(exp).toMatch(`
             testing...
-            ${'asd'}
+            asd
+            TRUE
+            FALSE
         `);
     });
 
