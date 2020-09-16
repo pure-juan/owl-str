@@ -17,6 +17,7 @@ describe("owl-str test", () => {
         expect(exp).toMatch(`
             testing...
             asd
+            
             TRUE
             FALSE
         `);

@@ -23,7 +23,7 @@
   },
   "repository": "https://github.com/pure-juan/owl-str",
   "jest": {
-    "verbose": true,
+    "verbose": false,
     "rootDir": "lib",
     "moduleFileExtensions": [
       "ts",
