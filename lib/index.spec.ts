@@ -1,98 +1,100 @@
-import { str, emptyStr, isNotEmpty, isEmpty, isTrue, isFalse } from './';
+import { str, emptyStr, isNotEmpty, isEmpty, isTrue, isFalse } from "./";
 
 describe("owl-str test", () => {
-    test('test str function', () => {
-        const payload = {
-            first: true,
-            second: false
-        }
-        const exp = str(payload)`
+  test("test str function", () => {
+    const payload = {
+      first: true,
+      second: false,
+    };
+    const exp = str<typeof payload>`
             testing...
-            ${true ? 'asd': ''}
-            ${false ? 'asd': ''}
-            ${({first}) => first ? 'TRUE': 'FALSE'}
-            ${({second}) => second ? 'TRUE': 'FALSE'}
+            ${true ? "asd" : ""}
+            ${false ? "asd" : ""}
+            ${({ first }) => (first ? "TRUE" : "FALSE")}
+            ${({ second }) => (second ? "TRUE" : "FALSE")}
         `;
 
-        expect(exp).toMatch(`
+    expect(exp(payload)).toMatch(`
             testing...
             asd
             
             TRUE
             FALSE
         `);
-    });
+  });
 
-    test('test emptyStr function', () => {
-        expect(emptyStr`
+  test("test emptyStr function", () => {
+    expect(emptyStr`
             testing...
-        `).toBe('')
-    });
+        `).toBe("");
+  });
 
-    test('test isNotEmpty', () => {
-        { // null
-            let exp = isNotEmpty(null)`
+  test("test isNotEmpty", () => {
+    {
+      // null
+      let exp = isNotEmpty(null)`
                 testing...
             `;
-            expect(exp).toBe('');
-            exp = isNotEmpty('')`
+      expect(exp).toBe("");
+      exp = isNotEmpty("")`
                 testing...
             `;
-            expect(exp).toBe(`
+      expect(exp).toBe(`
                 testing...
             `);
-        }
+    }
 
-        { // undefined
-            let exp = isNotEmpty(undefined)`
+    {
+      // undefined
+      let exp = isNotEmpty(undefined)`
                 testing...
             `;
-            expect(exp).toBe('');
-            exp = isNotEmpty('')`
+      expect(exp).toBe("");
+      exp = isNotEmpty("")`
                 testing...
             `;
-            expect(exp).toBe(`
+      expect(exp).toBe(`
                 testing...
             `);
-        }
-    });
+    }
+  });
 
-    test('test isEmpty function', () => {
-        let exp = isEmpty({})`
+  test("test isEmpty function", () => {
+    let exp = isEmpty({})`
             testing...
         `;
-        expect(exp).toBe('');
-        exp = isEmpty(null)`
+    expect(exp).toBe("");
+    exp = isEmpty(null)`
             testing...
         `;
-        expect(exp).toBe(`
+    expect(exp).toBe(`
             testing...
         `);
-    });
+  });
 
-    test('test isTrue function', () => {
-        let exp = isTrue(false)`
+  test("test isTrue function", () => {
+    let exp = isTrue(false)`
             testing...
         `;
-        expect(exp).toBe('');
-        exp = isTrue(true)`
+    expect(exp).toBe("");
+    exp = isTrue(true)`
             testing...
         `;
-        expect(exp).toBe(`
+    expect(exp).toBe(`
             testing...
         `);
-    });
+  });
 
-    test('test isFalse function', () => {
-        let exp = isFalse(true)`
+  test("test isFalse function", () => {
+    let exp = isFalse(true)`
             testing...
         `;
-        expect(exp).toBe('');
-        exp = isFalse(false)`
+    expect(exp).toBe("");
+    exp = isFalse(false)`
             testing...
         `;
-        expect(exp).toBe(`
+    expect(exp).toBe(`
             testing...
         `);
-    });
+  });
 });
